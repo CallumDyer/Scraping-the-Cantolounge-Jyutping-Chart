@@ -1,4 +1,4 @@
-## Scraping the Cantolounge Jyutping Chart
+# Scraping the Cantolounge Jyutping Chart
 
 A tutorial on, and series of scripts for, scraping [Baggio Wong's](https://github.com/BaggioWongHK) cantolounge.com [Jyutping Chart](https://cantolounge.com/jyutping-chart/) and converting the individual audio files to consolidated drilling exercises of a desired length.
 
@@ -10,8 +10,60 @@ It is worth noting that the audio files are all freely available [here](https://
 
 ## Tutorial
 
-Start by navigating to https://baggiowonghk.github.io/jyutping-chart/.
+### Step 1: grabbing the Chinese characters and the Jyutping
+
+Navigate to https://baggiowonghk.github.io/jyutping-chart/ and click on one of the sound links.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/1_select_data.png)
 
-Click on one of the sound links.
+Copy the Jyutping that appears.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/2_copy_jyutping_text.png)
+
+Open Chrome DevTools with ctrl+shift+c or by right clicking anywhere on the page, and selecting the last option of 'Inspect'.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/3_get_to_chrome_dev_tools.png)
+
+From Chrome DevTools, select the 'Network' tab.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/4_network_tab.png)
+
+Refresh the page with ctrl+r or by selecting the refresh button in your browser.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/5_refresh_network_tab.png)
+
+Enter the text we copied earlier into the search bar and hit enter (if the search bar isn't visible, use ctrl+f to summon it).
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/6_enter_text_network_tab_search.png)
+
+Select the result that appears below.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/7_select_network_tab_search_result.png)
+
+Select the resulting window and use ctrl+a to select all of the window's text, then copy.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/8_copy_resulting_json.png)
+
+Find somewhere to paste the text and delete the parts that are not valid JSON. I used jsonlint.com. The first part to delete is at the start. Delete everything up to `var samplewords = `.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/9_delete_javascript.png)
+
+The second part to delete is at the end. Delete everything after the second last semicolon of the document.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/10_delete_javascript_2.png)
+
+The final part to delete is the comma on the now second last curly bracket of the document.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/11_delete_comma.png)
+
+If you're following along on jsonlint.com, click on the 'Validate JSON' button to make sure you got everything.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/12_click_validate.png)
+
+There will be an error that says 'Error: Duplicate key 'deu''. That's fine.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/13_disregard_error.png)
+
+Select the text and use ctrl+a and copy the now valid (for our purposes) JSON.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/14_copy_JSON.png)
