@@ -10,7 +10,7 @@ It is worth noting that the audio files are all freely available [here](https://
 
 ## Tutorial
 
-### Step 1: grabbing the Chinese characters and the Jyutping
+### Step 1: grabbing the Chinese characters
 
 Navigate to https://baggiowonghk.github.io/jyutping-chart/ and click on one of the sound links.
 
@@ -67,3 +67,19 @@ There will be an error that says 'Error: Duplicate key 'deu''. That's fine.
 Select the text and use ctrl+a and copy the now valid (for our purposes) JSON.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/14_copy_JSON.png)
+
+Navigate to [JSONPath.com](https://jsonpath.com/) and paste the JSON into 'Inputs'.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/15_paste_JSON.png)
+
+Type in the JSONPath: `*.*.chinese` into the JSONPath input bar above.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/16_Chinese_JSONPath.png)
+
+Select the resulting 'Evaluation Results' and copy the output with ctrl-A. Keep this same tab open as we'll need it later for grabbing the Jyutping.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/17_copy_Chinese.png)
+
+Paste the output into a text editor of your choice and save the file as 'chinese.txt'.
+
+### Step 2: formatting the Chinese characters and inserting them into a list of urls
