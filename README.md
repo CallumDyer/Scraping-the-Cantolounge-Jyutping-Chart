@@ -80,10 +80,24 @@ Select the resulting 'Evaluation Results' and copy the output with ctrl-A. Keep 
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/17_copy_Chinese.png)
 
-Paste the output into a text editor of your choice and save the file as 'chinese.txt'.
+Paste the output into a text editor of your choice and save the file as 'chinese_from_JSONPath.txt'.
 
 ### Step 2: formatting the Chinese characters and inserting them into a list of urls
 
-What we want is an array of urls in the form of `"https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3"`. No doubt there are many ways to convert the data we have now in chinese.txt to such an array. The following is what I did, and requires Emacs (I will provide some links for those unfamiliar with it).
+What we want is an array of urls in the form of `"https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3"`. No doubt there are many ways to convert the data we have now in chinese_from_JSONPath.txt to such an array. The following is what I did, and requires Emacs (I will provide some links for those unfamiliar with it).
 
-Create a new file titled 'script_1_formatting_chinese_raw_input.rb' (or alternatively use the script of the same name that is provided). Copy the contents of chinese.txt into it and assign the resulting array to the variable `chinese`.
+Create a new file titled 'script_1_formatting_chinese_raw_input.rb' (or alternatively use the script of the same name that is provided). Copy the contents of chinese_from_JSONPath.txt into it and assign the resulting array to the variable `chinese`.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/18_chinese_variable.png)
+
+Then add the following:
+
+`
+chinese = chinese.reject { |c| c.empty? }
+
+File.open("chinese_raw_text.txt", "w") {|f| f.write(chinese.join("\n"))}
+`
+
+I found two links helpful for writing this script, regarding [removing blank elements from an array](https://stackoverflow.com/questions/5878697/how-do-i-remove-blank-elements-from-an-array) and [how to create a file in Ruby](https://stackoverflow.com/questions/7911669/how-to-create-a-file-in-ruby).
+
+The script removes blank elements from our `chinese` array and it then writes out the elements to a new file 'chinese_raw_text.txt'. After running the script, chinese_raw_text.txt looks like this:
