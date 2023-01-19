@@ -92,12 +92,14 @@ Create a new file titled 'script_1_formatting_chinese_raw_input.rb' (or alternat
 
 Then add the following:
 
-`
+```
 chinese = chinese.reject { |c| c.empty? }
 
 File.open("chinese_raw_text.txt", "w") {|f| f.write(chinese.join("\n"))}
-`
+```
 
 I found two links helpful for writing this script, regarding [removing blank elements from an array](https://stackoverflow.com/questions/5878697/how-do-i-remove-blank-elements-from-an-array) and [how to create a file in Ruby](https://stackoverflow.com/questions/7911669/how-to-create-a-file-in-ruby).
 
-The script removes blank elements from our `chinese` array and it then writes out the elements to a new file 'chinese_raw_text.txt'. After running the script, chinese_raw_text.txt looks like this:
+The script removes blank elements from our `chinese` array and then writes out the elements to a new file 'chinese_raw_text.txt'. After running the script, chinese_raw_text.txt looks like this:
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/19_chinese_raw_text.png)
