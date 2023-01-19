@@ -67,3 +67,7 @@ There will be an error that says 'Error: Duplicate key 'deu''. That's fine.
 Select the text and use ctrl+a and copy the now valid (for our purposes) JSON.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/14_copy_JSON.png)
+
+Navigate to [JSONPath.com](https://jsonpath.com/) and paste the JSON into 'Inputs'.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/15_paste_JSON.png)
