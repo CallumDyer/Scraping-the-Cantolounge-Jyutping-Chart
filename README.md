@@ -83,3 +83,7 @@ Select the resulting 'Evaluation Results' and copy the output with ctrl-A. Keep 
 Paste the output into a text editor of your choice and save the file as 'chinese.txt'.
 
 ### Step 2: formatting the Chinese characters and inserting them into a list of urls
+
+What we want is an array of urls in the form of `"https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3"`. No doubt there are many ways to convert the data we have now in chinese.txt to such an array. The following is what I did, and requires Emacs (I will provide some links for those unfamiliar with it).
+
+Create a new file titled 'script_1_formatting_chinese_raw_input.rb' (or alternatively use the script of the same name that is provided). Copy the contents of chinese.txt into it and assign the resulting array to the variable `chinese`.
