@@ -84,7 +84,7 @@ Paste the output into a text editor of your choice and save the file as 'chinese
 
 ### Step 2: formatting the Chinese characters and inserting them into a list of urls
 
-What we want is an array of urls in the form of `"https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3"`. No doubt there are many ways to convert the data we have now in chinese_from_JSONPath.txt to such an array. The following is what I did, and requires Emacs (I will provide some links and instructions for those unfamiliar with it).
+What we want is an array of Chinese characters, like the following:`"烏鴉"`. No doubt there are many ways to convert the data we have now in chinese_from_JSONPath.txt to such an array. The following is what I did, and requires Emacs (I will provide some links and instructions for those unfamiliar with it).
 
 Create a new file titled 'script_1_formatting_chinese_raw_input.rb' (or alternatively use the script of the same name that is provided). Copy the contents of chinese_from_JSONPath.txt into it and assign the resulting array to the variable `chinese`. Note that for those following along with emacs, copying the characters in will result in emacs complaining about problematic characters. Simply press enter to `Select coding system (default utf-8)`. Emacs won't be able to fully render all the characters, but that does not matter for our purposes.
 
@@ -110,12 +110,16 @@ Note that for emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key 
 
 Ensure the cursor is at the very start of the file by using the command `M-<` (to be clear, you will again need to hold down alt, hold down shift and press the < key (which is also the key for , except without the shift)).
 
-Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `"https://baggiowonghk.github.io/jyutping-chart/audio/chinese/` and press enter (for the sake of convenience and accuracy, rather than type in the part of the url, instead copy it with ctrl c, then paste it in with `C-x y` in emacs). The file should look like this:
+Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `"` and press enter. The file should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/20_replace-regexp_1.png)
 
-Again, return to the start of the file with `M-<`. Use `M-x` and type in `replace-regexp` and press enter. This time, type in `$` and press enter. Type in `.mp3"` and press enter. The file should look like this:
+Again, return to the start of the file with `M-<`. Use `M-x` and type in `replace-regexp` and press enter. This time, type in `$` and press enter. Type in `"` and press enter. The file should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/21_replace-regexp_2.png)
 
 Indent the list to the right two spaces by first selecting all characters with `C-x h` and then use `C-x TAB` and press the right-arrow key twice. Add opening and closing square brackets to start and end of the list, respectively (the first row of characters may break its indentation as you add spaces above them, just re-indent them by pressing space twice). Assign the newly created array to the variable `urls`. The top and bottom of the file should look like the following:
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/22_urls_variable_1.png)
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/23_urls_variable_2.png)
+
