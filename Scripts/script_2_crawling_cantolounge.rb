@@ -28,7 +28,6 @@ characters =
   "寡婦",
   "掛住",
   "蝦仁",
-  "吓",
   "瑕疵",
   "烚吓烚吓",
   "下面",
@@ -621,7 +620,6 @@ characters =
   "耷",
   "包剪揼",
   "急",
-  "𥄫",
   "恰當",
   "盒",
   "合桃",
@@ -1642,23 +1640,23 @@ characters =
 
 url_pattern = "https://baggiowonghk.github.io/jyutping-chart/audio/chinese/"
 
-characters.each do |character|
+characters.each_with_index do |character, index|
   if character =~ /jaau1/
     puts "#{url_pattern}%E5%B7%A6%20jaau1.mp3"
     tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
     tempfile.close
-    FileUtils.mv tempfile.path, "#{character}.mp3"
+    FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
     next
   elsif character =~ /long3/
     puts "#{url_pattern}long3%20%E9%AB%98.mp3"
     tempfile = URI.parse("#{url_pattern}long3%20%E9%AB%98.mp3").open
     tempfile.close
-    FileUtils.mv tempfile.path, "#{character}.mp3"
+    FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
     next
   end
   character_encoded = CGI.escape(character)
   puts "#{url_pattern}#{character_encoded}.mp3"
   tempfile = URI.parse("#{url_pattern}#{character_encoded}.mp3").open
   tempfile.close
-  FileUtils.mv tempfile.path, "#{character}.mp3"
+  FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
 end
