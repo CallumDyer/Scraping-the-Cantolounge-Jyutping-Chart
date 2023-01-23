@@ -1,4 +1,6 @@
-
+require "open-uri"
+require "fileutils"
+require "CGI"
 
 characters = 
 [
@@ -1637,3 +1639,26 @@ characters =
   "啜",
   "絕對"
 ]
+
+url_pattern = "https://baggiowonghk.github.io/jyutping-chart/audio/chinese/"
+
+characters.each do |character|
+  if character =~ /jaau1/
+    puts "#{url_pattern}%E5%B7%A6%20jaau1.mp3"
+    tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
+    tempfile.close
+    FileUtils.mv tempfile.path, "#{character}.mp3"
+    next
+  elsif character =~ /long3/
+    puts "#{url_pattern}long3%20%E9%AB%98.mp3"
+    tempfile = URI.parse("#{url_pattern}long3%20%E9%AB%98.mp3").open
+    tempfile.close
+    FileUtils.mv tempfile.path, "#{character}.mp3"
+    next
+  end
+  character_encoded = CGI.escape(character)
+  puts "#{url_pattern}#{character_encoded}.mp3"
+  tempfile = URI.parse("#{url_pattern}#{character_encoded}.mp3").open
+  tempfile.close
+  FileUtils.mv tempfile.path, "#{character}.mp3"
+end
