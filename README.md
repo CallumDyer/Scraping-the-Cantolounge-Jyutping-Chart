@@ -202,4 +202,4 @@ elsif character =~ /long3/
   next
 end
 ```
-The `elsif` statement simply does the same as the `if` statement except for `long3` instead of `jaau1`.
+The `elsif` statement does the same as the `if` statement except for `long3` instead of `jaau1`.
