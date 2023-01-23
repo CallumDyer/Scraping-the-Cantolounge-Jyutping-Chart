@@ -190,3 +190,16 @@ FileUtils.mv tempfile.path, "#{character}.mp3"
 ```
 
 I won't claim to know how exactly this code works. I came across it on a reddit comment by u/janko-m, found in this [post](https://www.reddit.com/r/ruby/comments/6x4ev4/how_to_download_an_mp3_file/). Nonetheless, what it ends up doing is downloading the mp3 file from the specified url and saving it with the name of the character.
+
+`next` simply skips to the next element in the array.
+
+```
+elsif character =~ /long3/
+  puts "#{url_pattern}long3%20%E9%AB%98.mp3"
+  tempfile = URI.parse("#{url_pattern}long3%20%E9%AB%98.mp3").open
+  tempfile.close
+  FileUtils.mv tempfile.path, "#{character}.mp3"
+  next
+end
+```
+The `elsif` statement simply does the same as the `if` statement except for `long3` instead of `jaau1`.
