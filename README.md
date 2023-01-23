@@ -110,7 +110,7 @@ Note that for emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key 
 
 Ensure the cursor is at the very start of the file by using the command `M-<` (to be clear, you will again need to hold down alt, hold down shift and press the < key (which is also the key for , except without the shift)).
 
-Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `",` and press enter. The file should look like this:
+Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `"` and press enter. The file should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/20_replace-regexp_1.png)
 
