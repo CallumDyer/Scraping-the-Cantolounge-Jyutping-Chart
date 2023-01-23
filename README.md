@@ -118,7 +118,7 @@ Again, return to the start of the file with `M-<`. Use `M-x` and type in `replac
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/21_replace-regexp_2.png)
 
-Indent the list to the right two spaces by first selecting all characters with `C-x h` and then use `C-x TAB` and press the right-arrow key twice. Add opening and closing square brackets to start and end of the list, respectively (the first row of characters may break its indentation as you add spaces above them, just re-indent them by pressing space twice). Assign the newly created array to the variable `urls`. The top and bottom of the file should look like the following:
+Indent the list to the right two spaces by first selecting all characters with `C-x h` and then use `C-x TAB` and press the right-arrow key twice. Add opening and closing square brackets to start and end of the list, respectively (the first row of characters may break its indentation as you add spaces above it, just re-indent it by pressing space twice). Assign the newly created array to the variable `characters`. The top and bottom of the file should look like the following:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/22_urls_variable_1.png)
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/23_urls_variable_2.png)
