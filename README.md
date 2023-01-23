@@ -123,3 +123,70 @@ Indent the list to the right two spaces by first selecting all characters with `
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/22_urls_variable_1.png)
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/23_urls_variable_2.png)
 
+Add the following three lines to the start of the script:
+```
+require "open-uri"
+require "fileutils"
+require "CGI"
+```
+These are ruby gems you will need to install.
+
+After the array, add the following code:
+```
+url_pattern = "https://baggiowonghk.github.io/jyutping-chart/audio/chinese/"
+
+characters.each do |character|
+  if character =~ /jaau1/
+    puts "#{url_pattern}%E5%B7%A6%20jaau1.mp3"
+    tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
+    tempfile.close
+    FileUtils.mv tempfile.path, "#{character}.mp3"
+    next
+  end
+  elsif character =~ /long3/
+    puts "#{url_pattern}long3%20%E9%AB%98.mp3"
+    tempfile = URI.parse("#{url_pattern}long3%20%E9%AB%98.mp3").open
+    tempfile.close
+    FileUtils.mv tempfile.path, "#{character}.mp3"
+    next
+  end
+  character_encoded = CGI.escape(character)
+  puts "#{url_pattern}#{character_encoded}.mp3"
+  tempfile = URI.parse("#{url_pattern}#{character_encoded}.mp3").open
+  tempfile.close
+  FileUtils.mv tempfile.path, "#{character}.mp3"
+end
+```
+
+I will explain what this code is doing.
+
+`url_pattern = "https://baggiowonghk.github.io/jyutping-chart/audio/chinese/"`
+
+This is the first part of the urls we will be accessing. You will notice that this variable is called in this way: `"#{url_pattern}..."`. This is string interpolation. Ruby detects the `#{...}` syntax and inserts the value of the variable within into the string from which the syntax is being called. So `"#{url_pattern}%E5%B7%A6%20jaau1.mp3"` is effectively the same thing as `"https://baggiowonghk.github.io/jyutping-chart/audio/chinese/%E5%B7%A6%20jaau1.mp3"`.
+
+```
+characters.each do |character|
+...
+end
+```
+
+This is a loop. For each element of the array `characters`, we run the code within. In each iteration, the element is assigned to the variable in the pipes, `character`. We can access the element with this variable.
+
+```
+if character =~ /jaau1/
+  puts "#{url_pattern}%E5%B7%A6%20jaau1.mp3"
+  tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
+  tempfile.close
+  FileUtils.mv tempfile.path, "#{character}.mp3"
+end
+```
+
+The code block within the if statement is triggered if `character` matches the regex pattern `jaau1`. We need to account for the urls which do not fit the normal pattern. Normally urls follow the pattern of `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3` or perhaps `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/ngai1.mp3`. In the case of the element, `左 jaau1`, we need to encode the space, so the url will end up as `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/左%20jaau1.mp3`. While we're at it, we can also encode the character 左. So instead of sticking the element `左 jaau1` at the end of our `url_pattern`,`https://baggiowonghk.github.io/jyutping-chart/audio/chinese/`, we instead stick the encoded character and space along with jaau1 and we end up accessing the url: `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/%E5%B7%A6%20jaau1.mp3`.
+
+```
+tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
+tempfile.close
+FileUtils.mv tempfile.path, "#{character}.mp3"
+```
+
+I won't claim to know how exactly this code works. I came across it on a reddit comment by u/janko-m, found in this [post](https://www.reddit.com/r/ruby/comments/6x4ev4/how_to_download_an_mp3_file/). Nonetheless, what it ends up doing is downloading the mp3 file from the specified url and saving it with the name of the character.
