@@ -110,18 +110,18 @@ Note that for emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key 
 
 Ensure the cursor is at the very start of the file by using the command `M-<` (to be clear, you will again need to hold down alt, hold down shift and press the < key (which is also the key for , except without the shift)).
 
-Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `"` and press enter. The file should look like this:
+Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `",` and press enter. The file should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/20_replace-regexp_1.png)
 
-Again, return to the start of the file with `M-<`. Use `M-x` and type in `replace-regexp` and press enter. This time, type in `$` and press enter. Type in `"` and press enter. The file should look like this:
+Again, return to the start of the file with `M-<`. Use `M-x` and type in `replace-regexp` and press enter. This time, type in `$` and press enter. Type in `",` and press enter. Delete the comma from the final character. The file should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/21_replace-regexp_2.png)
 
 Indent the list to the right two spaces by first selecting all characters with `C-x h` and then use `C-x TAB` and press the right-arrow key twice. Add opening and closing square brackets to start and end of the list, respectively (the first row of characters may break its indentation as you add spaces above it, just re-indent it by pressing space twice). Assign the newly created array to the variable `characters`. The top and bottom of the file should look like the following:
 
-![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/22_urls_variable_1.png)
-![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/23_urls_variable_2.png)
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/22_characters_variable_1.png)
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/23_characters_variable_2.png)
 
 Add the following three lines to the start of the script:
 ```
