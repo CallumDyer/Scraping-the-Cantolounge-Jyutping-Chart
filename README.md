@@ -239,6 +239,22 @@ After FFmpeg finishes, you should have a 1 hour, 21 minutes and 59 seconds long 
 
 First, decide how many files you want, or how long you want each file to be. If you want 5 files (this is what I chose), each will be 16 minutes 23.8 seconds. 4 will be about 20 minutes. 6 will be about 13 minutes. You can use this [calculator](https://www.calculatorsoup.com/calculators/time/time-calculator.php) for making the calculations.
 
-We will use audacity to split the files. Open `tone_drills.mp3` in Audacity. Ensure the audio is selected by press ctrl+a. At the bottom, you'll see two bars with times in them, labelled above as 'Start and End of Selection'. For the 'end', the bar on the right, enter in the end of the file, which should be about 1:21:59. Next, we'll use our calculated time of 16 minutes and 23.8 seconds, rounded up to 16 minutes and 24 seconds (the last file will be slightly shorter). We want our file to be 16:24, so enter that as the 'start', the bar on the left. 
+We will use audacity to split the files. Open `tone_drills.mp3` in Audacity. Ensure the audio is selected by pressing ctrl+a. At the bottom, you'll see two bars with times in them, labelled above as 'Start and End of Selection'. For the 'end', the bar on the right, the time for the end of the file should be present, about 1:21:59. Next, we'll use our calculated time of 16 minutes and 23.8 seconds, rounded up to 16 minutes and 24 seconds (the last file will be slightly shorter). We want our file to be 16:24, so enter that as the 'start', the bar on the left. Audacity should look like this:
 
-![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/25_audacity_1)
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/25_audacity_1.png)
+
+Cut this selection using either the drop-down menu from right-clicking, or from using ctrl+x, so that only the first 16:24 are left. Like this:
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/26_audacity_2.png)
+
+Now select 'File' in the top left, then 'Export' and choose 'Export as MP3' or 'Export as WAV'.
+
+Now open a new file and paste in the audio we cut. This should equal 1:05:35 (or so), since this is 1:21:59 minus 16:24. Repeat the same process using ctrl+a, entering 16:24 into the start of selection and then cutting and exporting the remaining 16:24 clip.
+
+Repeat until you have split off all the desired files.
+
+### Step 6: creating accompanying docs
+
+Grab all the characters from `chinese_raw_text.txt` which was the output of `script_1_formatting_chinese_raw_input.rb`. Paste these into a spreadsheet program of your choice. 
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/27_spreadsheet.png)
