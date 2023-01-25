@@ -237,4 +237,8 @@ After FFmpeg finishes, you should have a 1 hour, 21 minutes and 59 seconds long 
 
 ### Step 5: splitting into different files again
 
-First, decide how many files you want, or how long you want each file to be. If you want 5 files (this is what I chose), each will be approximately 16 minutes. 4 will be about 20 minutes. 6 will be about 13 minutes. You can use this [calculator](https://www.calculatorsoup.com/calculators/time/time-calculator.php) for making the calculations.
+First, decide how many files you want, or how long you want each file to be. If you want 5 files (this is what I chose), each will be 16 minutes 23.8 seconds. 4 will be about 20 minutes. 6 will be about 13 minutes. You can use this [calculator](https://www.calculatorsoup.com/calculators/time/time-calculator.php) for making the calculations.
+
+We will use audacity to split the files. Open `tone_drills.mp3` in Audacity. Ensure the audio is selected by press ctrl+a. At the bottom, you'll see two bars with times in them, labelled above as 'Start and End of Selection'. For the 'end', the bar on the right, enter in the end of the file, which should be about 1:21:59. Next, we'll use our calculated time of 16 minutes and 23.8 seconds, rounded up to 16 minutes and 24 seconds (the last file will be slightly shorter). We want our file to be 16:24, so enter that as the 'start', the bar on the left. 
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/25_audacity_1)
