@@ -257,4 +257,36 @@ Repeat until you have split off all the desired files.
 
 Grab all the characters from `chinese_raw_text.txt` which was the output of `script_1_formatting_chinese_raw_input.rb`. Paste these into a spreadsheet program of your choice. 
 
-![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/27_spreadsheet.png)
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/27_spreadsheet_1.png)
+
+For convenience sake, go to the bottom of the characters using ctrl+down arrow, then add a period to the four cells next to the last character in columns B, C, D and E. This will make it easier to duplicate values.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/28_spreadsheet_2.png)
+
+Go back to the top of column B with ctrl + up arrow. Enter the following formula into the first cell of column B: `=concat(A1," - ")`. Use ctrl + shift + down arrow to select the whole column B, then use ctrl + d to duplicate the formula into all the cells of column B.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/29_spreadsheet_3.png)
+
+If you still have your JSONPath.com window open, go back to that. If not, follow Step 1 again. You should have valid (for our purposes) JSON in the 'Input' window. This time, enter `*.*.jyutping` into the JSONPath input bar above.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/30_JSONPath_2.png)
+
+Copy the resulting Jyutping with ctrl-A.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/31_copy_jyutping.png)
+
+Paste the Jyutping into column C. Then type in the following formula into column D: `=LEFT(C1,LEN(C1)-1)`, in order to get rid of the comma at the end of our Jyutping. Use ctrl + shift + down arrow and ctrl + d to duplicate the formula into all of the column's cells. 
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/32_spreadsheet_4.png)
+
+You'll notice however, that the very last cell does not have a comma, so we've overriden the tone. Copy the value from the last cell of column C, into the last cell of D.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/33_spreadsheet_5.png)
+
+Use the following formula in the first cell of column E: `=concat(B1,D1)`. Use ctrl + shift + down arrow and ctrl + d to duplicate the formula into all of the column's cells.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/34_spreadsheet_6.png)
+
+While you've still got the whole column selected, copy the values and ctrl + shift + p paste them into a word program of your choice. Feel free to increase the font size.
+
+You'll probably want to break this word file up into chunks that correspond to your .mp3 files. I have 5 of these files for each of mine. It'll take some trial and error to find where each chunk should begin and end. If you'd rather skip this, you can make use of the audio files and word docs that I have prepared.
