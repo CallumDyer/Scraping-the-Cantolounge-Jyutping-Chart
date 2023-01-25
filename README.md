@@ -289,4 +289,10 @@ Use the following formula in the first cell of column E: `=concat(B1,D1)`. Use c
 
 While you've still got the whole column selected, copy the values and ctrl + shift + p paste them into a word program of your choice. Feel free to increase the font size.
 
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/35_word.png)
+
 You'll probably want to break this word file up into chunks that correspond to your .mp3 files. I have 5 of these files for each of mine. It'll take some trial and error to find where each chunk should begin and end. If you'd rather skip this, you can make use of the audio files and word docs that I have prepared.
+
+If you're like me, you may also want to keep track of which drills you've completed using a spreadsheet, see mine below.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/36_drill_tally.png)
