@@ -2,7 +2,7 @@
 
 A tutorial on, and series of scripts for, scraping [Baggio Wong's](https://github.com/BaggioWongHK) cantolounge.com [Jyutping Chart](https://cantolounge.com/jyutping-chart/) and converting the individual audio files to consolidated drilling exercises of a desired length.
 
-The consolidated drilling exercises are available https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/tree/main/Scripts%20and%20files/Ready%20audio%20files%20and%20word%20docs for those who may want them without following the tutorial.
+The consolidated drilling exercises are available [here](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/tree/main/Scripts%20and%20files/Ready%20audio%20files%20and%20word%20docs) for those who may want them without following the tutorial.
 
 ## Motivation
 
