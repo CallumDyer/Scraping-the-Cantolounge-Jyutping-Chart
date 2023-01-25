@@ -279,7 +279,7 @@ Paste the Jyutping into column C. Then type in the following formula into column
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/32_spreadsheet_4.png)
 
-You'll notice however, that the very last cell does not have a comma, so we've overriden the tone. Copy the value from the last cell of column C, into the last cell of D.
+You'll notice however, that the very last cell does not have a comma, so we've overridden the tone. Copy the value from the last cell of column C, into the last cell of D.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/33_spreadsheet_5.png)
 
