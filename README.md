@@ -137,26 +137,25 @@ After the array, add the following code:
 ```
 url_pattern = "https://baggiowonghk.github.io/jyutping-chart/audio/chinese/"
 
-characters.each do |character|
+characters.each_with_index do |character, index|
   if character =~ /jaau1/
     puts "#{url_pattern}%E5%B7%A6%20jaau1.mp3"
     tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
     tempfile.close
-    FileUtils.mv tempfile.path, "#{character}.mp3"
+    FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
     next
-  end
   elsif character =~ /long3/
     puts "#{url_pattern}long3%20%E9%AB%98.mp3"
     tempfile = URI.parse("#{url_pattern}long3%20%E9%AB%98.mp3").open
     tempfile.close
-    FileUtils.mv tempfile.path, "#{character}.mp3"
+    FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
     next
   end
   character_encoded = CGI.escape(character)
   puts "#{url_pattern}#{character_encoded}.mp3"
   tempfile = URI.parse("#{url_pattern}#{character_encoded}.mp3").open
   tempfile.close
-  FileUtils.mv tempfile.path, "#{character}.mp3"
+  FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
 end
 ```
 
@@ -218,6 +217,14 @@ For all other characters, other than those including `jaau1` and `long3`, we enc
 
 Before running the script, there are two characters we need to manually delete from our array, since there are no urls for them. They are 吓 and 𥄫. Delete the rows with these characters, or else the script will break when it reaches them (the urls will return a 404 error).
 
-Now run the script by navigating to the director containing the script (note that in this directory will be these hundreds of mp3 files, so you may want to run it in a folder without anything else) using `ruby script_2_crawling_cantolounge.rb`. Once the script finishes running, you should have 1632 mp3 files (including the first file, which has the zeroth index).
+Now run the script by navigating to the directory containing the script (note that in this directory will be these hundreds of mp3 files, so you may want to run it in an empty folder) using `ruby script_2_crawling_cantolounge.rb`. Once the script finishes running, you should have 1632 mp3 files (including the first file, which has the zeroth index).
 
 ### Step 4: combining the downloaded mp3s
+
+Use FFmpeg to combine the files. If you have WSL2, you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
+
+I used the following .txt file for the input for FFmpeg:
+
+You will need to delete the space from the jaau1 and long3 and long file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3).
+
+Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i tone_drills.txt tone_drills.mp4`
