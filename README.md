@@ -221,9 +221,11 @@ Now run the script by navigating to the directory containing the script (note th
 
 ### Step 4: combining the downloaded mp3s
 
-Use FFmpeg to combine the files. If you have WSL2, you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
+Use FFmpeg to combine the files. If you have Windows Subsystem for Linux (WSL), you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
 
-I used the following .txt file for the input for FFmpeg:
+We will construct a .txt file for the input for FFmpeg. I did this using a combination of Google sheets and Emacs. Open Google sheets or a similar spreadsheet program. Label the column A `Index`, column B `Period`, column C `Characters`, column D `Index concat with period`, column E `Index concat with period concat with characters` and column F `Pasted values`. Start by pasting in the raw characters from chinese_raw_text.txt, which was the output of script_1_formatting_chinese_raw_input.rb, into the `Characters` column. Delete the two characters 吓 and 𥄫 and remove their rows. Including the `Characters` label, there should be a total of 1633 rows in the column. Your spreadsheet should look like this: 
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/24_spreadsheet_characters.png)
 
 You will need to delete the space from the jaau1 and long3 and long file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3).
 
