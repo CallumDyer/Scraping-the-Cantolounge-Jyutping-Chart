@@ -296,3 +296,9 @@ You'll probably want to break this word file up into chunks that correspond to y
 If you're like me, you may also want to keep track of which drills you've completed using a spreadsheet, see mine below.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/36_drill_tally.png)
+
+I like to do my drills, listening and repeating, on my phone. I have a Google drive widget that goes straight to the folder with the drills.
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/37_gdrive_widget.png)
+
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/38_cantonese_tone_drills_folder.png)
