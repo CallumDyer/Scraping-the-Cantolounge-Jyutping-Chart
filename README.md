@@ -255,17 +255,17 @@ After FFmpeg finishes, you should have a 1 hour, 21 minutes and 59 seconds long 
 
 First, decide how many files you want, or how long you want each file to be. If you want 5 files (this is what I chose), each will be 16 minutes 23.8 seconds. 4 will be about 20 minutes. 6 will be about 13 minutes. You can use this [calculator](https://www.calculatorsoup.com/calculators/time/time-calculator.php) for making the calculations.
 
-We will use audacity to split the files. Open `tone_drills.mp3` in Audacity. Ensure the audio is selected by pressing ctrl+a. At the bottom, you'll see two bars with times in them, labelled above as 'Start and End of Selection'. For the 'end', the bar on the right, the time for the end of the file should be present, about 1:21:59. Next, we'll use our calculated time of 16 minutes and 23.8 seconds, rounded up to 16 minutes and 24 seconds (the last file will be slightly shorter). We want our file to be 16:24, so enter that as the 'start', the bar on the left. Audacity should look like this:
+We will use Audacity to split the files. Open `tone_drills.mp3` in Audacity. Ensure the audio is selected by pressing `ctrl+a`. At the bottom, you'll see two bars with times in them, labelled above as 'Start and End of Selection'. For the 'end', the bar on the right, the time for the end of the file should be present, about 1:21:59. Next, we'll use our calculated time of 16 minutes and 23.8 seconds, rounded up to 16 minutes and 24 seconds (the last file will be slightly shorter). We want our file to be 16:24, so enter that as the 'start', the bar on the left. Audacity should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/25_audacity_1.png)
 
-Cut this selection using either the drop-down menu from right-clicking, or from using ctrl+x, so that only the first 16:24 are left. Like this:
+Cut this selection using either the drop-down menu from right-clicking, or from using `ctrl+x`, so that only the first 16:24 are left. Like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/26_audacity_2.png)
 
 Now select 'File' in the top left, then 'Export' and choose 'Export as MP3' or 'Export as WAV'.
 
-Now open a new file and paste in the audio we cut. This should equal 1:05:35 (or so), since this is 1:21:59 minus 16:24. Repeat the same process using ctrl+a, entering 16:24 into the start of selection and then cutting and exporting the remaining 16:24 clip.
+Now open a new file and paste in the audio we cut. This should equal 1:05:35 (or so), since this is 1:21:59 minus 16:24. Repeat the same process using `ctrl+a`, entering 16:24 into the start of selection and then cutting and exporting the remaining 16:24 clip.
 
 Repeat until you have split off all the desired files.
 
@@ -275,11 +275,11 @@ Grab all the characters from `chinese_raw_text.txt` which was the output of `scr
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/27_spreadsheet_1.png)
 
-For convenience sake, go to the bottom of the characters using ctrl+down arrow, then add a period to the four cells next to the last character in columns B, C, D and E. This will make it easier to duplicate values.
+For convenience sake, go to the bottom of the characters using `ctrl+down arrow`, then add a period to the four cells next to the last character in columns B, C, D and E. This will make it easier to duplicate values.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/28_spreadsheet_2.png)
 
-Go back to the top of column B with ctrl + up arrow. Enter the following formula into the first cell of column B: `=concat(A1," - ")`. Use ctrl + shift + down arrow to select the whole column B, then use ctrl + d to duplicate the formula into all the cells of column B.
+Go back to the top of column B with `ctrl+up arrow`. Enter the following formula into the first cell of column B: `=concat(A1," - ")`. Use `ctrl+shift+down arrow` to select the whole column B, then use `ctrl+d` to duplicate the formula into all the cells of column B.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/29_spreadsheet_3.png)
 
@@ -287,11 +287,11 @@ If you still have your JSONPath.com window open, go back to that. If not, follow
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/30_JSONPath_2.png)
 
-Copy the resulting Jyutping with ctrl-A.
+Copy the resulting Jyutping with `ctrl+a`.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/31_copy_jyutping.png)
 
-Paste the Jyutping into column C. Then type in the following formula into column D: `=LEFT(C1,LEN(C1)-1)`, in order to get rid of the comma at the end of our Jyutping. Use ctrl + shift + down arrow and ctrl + d to duplicate the formula into all of the column's cells. 
+Paste the Jyutping into column C. Then type in the following formula into column D: `=LEFT(C1,LEN(C1)-1)`, in order to get rid of the comma at the end of our Jyutping. Use `ctrl+shift+down arrow` and `ctrl+d` to duplicate the formula into all of the column's cells. 
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/32_spreadsheet_4.png)
 
@@ -299,11 +299,11 @@ You'll notice however, that the very last cell does not have a comma, so we've o
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/33_spreadsheet_5.png)
 
-Use the following formula in the first cell of column E: `=concat(B1,D1)`. Use ctrl + shift + down arrow and ctrl + d to duplicate the formula into all of the column's cells.
+Use the following formula in the first cell of column E: `=concat(B1,D1)`. Use `ctrl+shift+down arrow` and `ctrl+d` to duplicate the formula into all of the column's cells.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/34_spreadsheet_6.png)
 
-While you've still got the whole column selected, copy the values and ctrl + shift + p paste them into a word program of your choice. Feel free to increase the font size.
+While you've still got the whole column selected, copy the values and `ctrl+shift+p` paste them into a word program of your choice. Feel free to increase the font size.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/35_word.png)
 
