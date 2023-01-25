@@ -223,10 +223,12 @@ Now run the script by navigating to the directory containing the script (note th
 
 Use FFmpeg to combine the files. If you have Windows Subsystem for Linux (WSL), you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
 
-We will construct a .txt file for the input for FFmpeg. I did this using a combination of Google sheets and Emacs. Open Google sheets or a similar spreadsheet program. Label the column A `Index`, column B `Period`, column C `Characters`, column D `Index concat with period`, column E `Index concat with period concat with characters` and column F `Pasted values`. Start by pasting in the raw characters from chinese_raw_text.txt, which was the output of script_1_formatting_chinese_raw_input.rb, into the `Characters` column. Delete the two characters 吓 and 𥄫 and remove their rows. Including the `Characters` label, there should be a total of 1633 rows in the column. Your spreadsheet should look like this: 
+We will construct a .txt file for the input for FFmpeg. Navigate to the directory on the command line, and use the https://unix.stackexchange.com/questions/33909/list-files-sorted-numerically `ls -1v`, then copy all the file names in order and paste them in Emacs. Copying may be a bit tedious, I wasn't able to find a way to copy all the results with the keyboard using WSL. Use right-click to copy on the terminal.
 
-![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/24_spreadsheet_characters.png)
+Create a new .txt file called `input_for_FFmpeg.txt` in the directory where you have your .mp3 files. Then, use the same method as before to fill out the rest of the .txt. Use `M-x <` to navigate to the start of the file, use `M-x`, type in `replace-regexp`, type in `^` and finally type in `file /home/callumdyer/Cantonese/`, except with whatever the path is to the directory where you have your .mp3 files (rather than mine). Your file should look something like this:
 
-You will need to delete the space from the jaau1 and long3 and long file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3).
+![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/24_input_for_ffmpeg.png)
 
-Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i tone_drills.txt tone_drills.mp4`
+You will need to delete the space from the jaau1 and long3 and long .mp3 file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3). Do this as well within the `input_for_FFmpeg.txt` file, otherwise FFmpeg will return an error when it gets to these two files.
+
+Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i input_for_FFmpeg.txt tone_drills.mp4`
