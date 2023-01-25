@@ -231,4 +231,10 @@ Create a new .txt file called `input_for_FFmpeg.txt` in the directory where you 
 
 You will need to delete the space from the jaau1 and long3 and long .mp3 file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3). Do this as well within the `input_for_FFmpeg.txt` file, otherwise FFmpeg will return an error when it gets to these two files.
 
-Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i input_for_FFmpeg.txt tone_drills.mp4`
+Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i input_for_FFmpeg.txt tone_drills.mp3`
+
+After FFmpeg finishes, you should have a 1 hour, 21 minutes and 59 seconds long .mp3 file that contains all the individual .mp3 files.
+
+### Step 5: splitting into different files again
+
+First, decide how many files you want, or how long you want each file to be. If you want 5 files (this is what I chose), each will be approximately 16 minutes. 4 will be about 20 minutes. 6 will be about 13 minutes. You can use this [calculator](https://www.calculatorsoup.com/calculators/time/time-calculator.php) for making the calculations.
