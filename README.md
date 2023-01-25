@@ -2,13 +2,28 @@
 
 A tutorial on, and series of scripts for, scraping [Baggio Wong's](https://github.com/BaggioWongHK) cantolounge.com [Jyutping Chart](https://cantolounge.com/jyutping-chart/) and converting the individual audio files to consolidated drilling exercises of a desired length.
 
+The consolidated drilling exercises are available https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/tree/main/Scripts%20and%20files/Ready%20audio%20files%20and%20word%20docs for those who may want them without following the tutorial.
+
 ## Motivation
 
-I was looking for Cantonese tone drills where I could listen and repeat the various sounds and tones in the language for around 15 minutes. The Cantolounge Jyutping Chart is a fantastic resource, but if one wants to use it daily to improve tones it is a bit tedious to navigate between each sound file and it is difficult to keep track of one's place over time. I therefore set out to scrape all the audio files and consolidate them into larger files, while also grabbing the Jyutping itself to follow along with.
+I was looking for Cantonese tone drills where I could listen and repeat the various sounds and tones in the language for around 15 minutes. The Cantolounge Jyutping Chart is a fantastic resource, but if one wants to use it daily to improve one's tones it is a bit tedious to navigate between each sound file and it is difficult to keep track of one's place over time. I therefore set out to scrape all the audio files and consolidate them into larger files, while also grabbing the Jyutping itself to follow along with.
 
 It is worth noting that the audio files are all freely available [here](https://github.com/BaggioWongHK/jyutping-chart), however I believe that the raw audio files are not in the same order as their corresponding Jyutping. One way to preserve that order is to crawl the site.
 
+## Summary of what I did
+
+1. Grabbed JSON from the site and used it to get a list of characters
+2. Formatted the list of characters
+3. Included the list as an array in a script which systematically downloaded each audio file (the urls for which made reference to each character)
+4. Combined the audio files into one big file
+5. Split the big file into 5 seperate files
+6. Prepared a doc with both the characters and Jyutping to follow along with while drilling
+
 ## Tutorial
+
+### Step 0: prerequisites
+
+Ideally you should have some familiarity with programming, particularly Ruby, and you should know the basics of navigating the command line. That being said, I think even someone with no programming experience should be able to follow along (albeit, perhaps, with significant effort and a bunch of googling).
 
 ### Step 1: grabbing the Chinese characters
 
@@ -20,7 +35,7 @@ Copy the Jyutping that appears.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/2_copy_jyutping_text.png)
 
-Open Chrome DevTools with ctrl+shift+c or by right clicking anywhere on the page, and selecting the last option of 'Inspect'.
+Open Chrome DevTools with `ctrl+shift+c` or by right clicking anywhere on the page, and selecting the last option of 'Inspect'.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/3_get_to_chrome_dev_tools.png)
 
@@ -28,11 +43,11 @@ From Chrome DevTools, select the 'Network' tab.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/4_network_tab.png)
 
-Refresh the page with ctrl+r or by selecting the refresh button in your browser.
+Refresh the page with `ctrl+r` or by selecting the refresh button in your browser.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/5_refresh_network_tab.png)
 
-Enter the text we copied earlier into the search bar and hit enter (if the search bar isn't visible, use ctrl+f to summon it).
+Enter the text we copied earlier into the search bar and hit enter (if the search bar isn't visible, use `ctrl+f` to summon it).
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/6_enter_text_network_tab_search.png)
 
@@ -40,7 +55,7 @@ Select the result that appears below.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/7_select_network_tab_search_result.png)
 
-Select the resulting window and use ctrl+a to select all of the window's text, then copy.
+Select the resulting window and use `ctrl+a` to select all of the window's text, then copy.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/8_copy_resulting_json.png)
 
@@ -64,7 +79,7 @@ There will be an error that says 'Error: Duplicate key 'deu''. That's fine.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/13_disregard_error.png)
 
-Select the text and use ctrl+a and copy the now valid (for our purposes) JSON.
+Select the text and use `ctrl+a` and copy the now valid (for our purposes) JSON.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/14_copy_JSON.png)
 
@@ -76,17 +91,17 @@ Type in the JSONPath: `*.*.chinese` into the JSONPath input bar above.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/16_Chinese_JSONPath.png)
 
-Select the resulting 'Evaluation Results' and copy the output with ctrl-A. Keep this same tab open as we'll need it later for grabbing the Jyutping.
+Select the resulting 'Evaluation Results' and copy the output with `ctrl+a`. Keep this same tab open as we'll need it later for grabbing the Jyutping.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/17_copy_Chinese.png)
 
-Paste the output into a text editor of your choice and save the file as 'chinese_from_JSONPath.txt'.
+Paste the output into a text editor of your choice and save the file as `chinese_from_JSONPath.txt`.
 
 ### Step 2: formatting the Chinese characters
 
 What we want is an array of Chinese characters, like the following:`"烏鴉"`. No doubt there are many ways to convert the data we have now in chinese_from_JSONPath.txt to such an array. The following is what I did, and requires Emacs (I will provide some links and instructions for those unfamiliar with it).
 
-Create a new file titled 'script_1_formatting_chinese_raw_input.rb' (or alternatively use the script of the same name that is provided). Copy the contents of chinese_from_JSONPath.txt into it and assign the resulting array to the variable `chinese`. Note that for those following along with emacs, copying the characters in will result in emacs complaining about problematic characters. Simply press enter to `Select coding system (default utf-8)`. Emacs won't be able to fully render all the characters, but that does not matter for our purposes.
+Create a new file titled `script_1_formatting_chinese_raw_input.rb` (or alternatively use the script of the same name that is provided). Copy the contents of `chinese_from_JSONPath.txt` into it and assign the resulting array to the variable `chinese`. Note that for those following along with emacs, copying the characters in will result in emacs complaining about problematic characters. Simply press enter to `Select coding system (default utf-8)`. Emacs won't be able to fully render all the characters, but that does not matter for our purposes.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/18_chinese_variable.png)
 
@@ -100,13 +115,13 @@ File.open("chinese_raw_text.txt", "w") {|f| f.write(chinese.join("\n"))}
 
 I found two links helpful for writing this script, regarding [removing blank elements from an array](https://stackoverflow.com/questions/5878697/how-do-i-remove-blank-elements-from-an-array) and [how to create a file in Ruby](https://stackoverflow.com/questions/7911669/how-to-create-a-file-in-ruby).
 
-The script removes blank elements from our `chinese` array and then writes out the elements to a new file 'chinese_raw_text.txt'. After running the script, chinese_raw_text.txt looks like this:
+The script removes blank elements from our `chinese` array and then writes out the elements to a new file `chinese_raw_text.txt`. After running the script, `chinese_raw_text.txt` looks like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/19_chinese_raw_text.png)
 
-Next, we construct a list of urls using these characters. Copy the characters to a new script named 'script_2_crawling_cantolounge.rb'. 
+Next, we construct a list of urls using these characters. Copy the characters to a new script named `script_2_crawling_cantolounge.rb`. 
 
-Note that for emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x, immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift).
+Note that for emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x, immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift)).
 
 Ensure the cursor is at the very start of the file by using the command `M-<` (to be clear, you will again need to hold down alt, hold down shift and press the < key (which is also the key for , except without the shift)).
 
