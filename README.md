@@ -206,7 +206,7 @@ tempfile.close
 FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
 ```
 
-I won't claim to know how exactly this code works. I came across it on a reddit comment by u/janko-m, found in this [post](https://www.reddit.com/r/ruby/comments/6x4ev4/how_to_download_an_mp3_file/). Nonetheless, what it ends up doing is downloading the mp3 file from the specified url and saving it with the name of the character.
+I won't claim to know how exactly this code works. I came across it on a reddit comment by u/janko-m, found in this [post](https://www.reddit.com/r/ruby/comments/6x4ev4/how_to_download_an_mp3_file/). Nonetheless, what it ends up doing is downloading the .mp3 file from the specified url and saving it with the name of the character.
 
 `next` simply skips to the next element in the array.
 
@@ -233,9 +233,9 @@ For all other characters, other than those including `jaau1` and `long3`, we enc
 
 Before running the script, there are two characters we need to manually delete from our array, since there are no urls for them. They are 吓 and 𥄫. Delete the rows with these characters, or else the script will break when it reaches them (the urls will return a 404 error).
 
-Now run the script by navigating to the directory containing the script (note that in this directory will be these hundreds of mp3 files, so you may want to run it in an empty folder) using `ruby script_2_crawling_cantolounge.rb`. Once the script finishes running, you should have 1632 mp3 files (including the first file, which has the zeroth index).
+Now run the script by navigating to the directory containing the script (note that in this directory will be these hundreds of .mp3 files, so you may want to run it in an empty folder) using `ruby script_2_crawling_cantolounge.rb`. Once the script finishes running, you should have 1632 .mp3 files (including the first file, which has the zeroth index).
 
-### Step 4: combining the downloaded mp3s
+### Step 4: combining the downloaded .mp3s
 
 Use FFmpeg to combine the files. If you have Windows Subsystem for Linux (WSL), you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
 
@@ -247,7 +247,7 @@ Create a new .txt file called `input_for_FFmpeg.txt` in the directory where you 
 
 You will need to delete the space from the jaau1 and long3 and long .mp3 file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3). Do this as well within the `input_for_FFmpeg.txt` file, otherwise FFmpeg will return an error when it gets to these two files.
 
-Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i input_for_FFmpeg.txt tone_drills.mp3`
+Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the .mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i input_for_FFmpeg.txt tone_drills.mp3`
 
 After FFmpeg finishes, you should have a 1 hour, 21 minutes and 59 seconds long .mp3 file that contains all the individual .mp3 files.
 
