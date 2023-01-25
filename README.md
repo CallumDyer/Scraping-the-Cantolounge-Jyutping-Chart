@@ -237,7 +237,7 @@ Now run the script by navigating to the directory containing the script (note th
 
 ### Step 4: combining the downloaded .mp3s
 
-Use FFmpeg to combine the files. If you have Windows Subsystem for Linux (WSL), you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
+Use [FFmpeg](https://itsfoss.com/ffmpeg/) to combine the files. If you have Windows Subsystem for Linux (WSL), you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
 
 We will construct a .txt file for the input for FFmpeg. Navigate to the directory on the command line, and use the https://unix.stackexchange.com/questions/33909/list-files-sorted-numerically `ls -1v`, then copy all the file names in order and paste them in Emacs. Copying may be a bit tedious, I wasn't able to find a way to copy all the results with the keyboard using WSL. Use right-click to copy on the terminal.
 
