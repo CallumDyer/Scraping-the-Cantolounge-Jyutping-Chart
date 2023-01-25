@@ -194,6 +194,7 @@ if character =~ /jaau1/
   tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
   tempfile.close
   FileUtils.mv tempfile.path, "#{index}.#{character}.mp3"
+  next
 end
 ```
 
