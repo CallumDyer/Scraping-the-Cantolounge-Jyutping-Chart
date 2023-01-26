@@ -121,11 +121,11 @@ The script removes blank elements from our `chinese` array and then writes out t
 
 Next, we construct an array using these characters. Copy the characters to a new script named `script_2_crawling_cantolounge.rb`. 
 
-Note that for Emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x, immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift)).
+Note that for Emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x. Immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift)).
 
 Ensure the cursor is at the very start of the file by using the command `M-<` (to be clear, you will again need to hold down alt, hold down shift and press the < key (which is also the key for , except without the shift)).
 
-Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our url. Type in `^` and press enter. Then type in `"` and press enter. The file should look like this:
+Next, use `M-x` and then type in `replace-regexp` and press enter. You will be prompted to enter the regexp you want to match with, and then the expression you wish to replace. In our case, we want to replace the start of each line with the first part of our array element syntax. Type in `^` and press enter. Then type in `"` and press enter. The file should look like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/20_replace-regexp_1.png)
 
@@ -198,7 +198,7 @@ if character =~ /jaau1/
 end
 ```
 
-The code block within the if statement is triggered if `character` matches the regex pattern `jaau1`. We need to account for the urls which do not fit the normal pattern. Normally urls follow the pattern of `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3` or perhaps `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/ngai1.mp3`. In the case of the element, `左 jaau1`, we need to encode the space, so the url will end up as `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/左%20jaau1.mp3`. While we're at it, we can also encode the character 左. So instead of sticking the element `左 jaau1` at the end of our `url_pattern`,`https://baggiowonghk.github.io/jyutping-chart/audio/chinese/`, we instead stick the encoded character and space along with jaau1 and we end up accessing the url: `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/%E5%B7%A6%20jaau1.mp3`. The index, `#{index}`, allows us to keep our downloaded files in order.
+The code block within the if statement is triggered if `character` matches the regex pattern `jaau1`. We need to account for the urls which do not fit the normal pattern. Normally urls follow the pattern of `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/烏鴉.mp3` or perhaps `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/ngai1.mp3`. In the case of the element, `左 jaau1`, we need to encode the space, so the url will end up as `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/左%20jaau1.mp3`. While we're at it, we also need to encode the character 左. So instead of sticking the element `左 jaau1` at the end of our `url_pattern`,`https://baggiowonghk.github.io/jyutping-chart/audio/chinese/`, we instead stick the encoded character and space along with jaau1 and we end up accessing the url: `https://baggiowonghk.github.io/jyutping-chart/audio/chinese/%E5%B7%A6%20jaau1.mp3`. The index, `#{index}`, allows us to keep our downloaded files in order.
 
 ```
 tempfile = URI.parse("#{url_pattern}%E5%B7%A6%20jaau1.mp3").open
@@ -239,13 +239,13 @@ Now run the script by navigating to the directory containing the script (note th
 
 Use [FFmpeg](https://itsfoss.com/ffmpeg/) to combine the files. If you have Windows Subsystem for Linux (WSL), you can install easily install it with [these commands](https://gist.github.com/ScottJWalter/eab4f534fa2fc9eb51278768fd229d70).
 
-We will construct a .txt file for the input for FFmpeg. Navigate to the directory on the command line, and use the https://unix.stackexchange.com/questions/33909/list-files-sorted-numerically `ls -1v`, then copy all the file names in order and paste them in Emacs. Copying may be a bit tedious, I wasn't able to find a way to copy all the results with the keyboard using WSL. Use right-click to copy on the terminal.
+We will construct a .txt file for the input for FFmpeg. Navigate to the directory on the command line with the downloaded .mp3 files, and use the [command](https://unix.stackexchange.com/questions/33909/list-files-sorted-numerically): `ls -1v`, then copy all the file names in order and paste them in Emacs. Copying may be a bit tedious, I wasn't able to find a way to copy all the results with the keyboard using WSL. Use right-click to copy on the terminal.
 
-Create a new .txt file called `input_for_FFmpeg.txt` in the directory where you have your .mp3 files. Then, use the same method as before to fill out the rest of the .txt. Use `M-x <` to navigate to the start of the file, use `M-x`, type in `replace-regexp`, type in `^` and finally type in `file /home/callumdyer/Cantonese/`, except with whatever the path is to the directory where you have your .mp3 files (rather than mine). Your file should look something like this:
+Create a new .txt file called `input_for_FFmpeg.txt` in the directory where you have your .mp3 files. Then, use the same method as before to fill out the rest of the .txt. Use `M-<` to navigate to the start of the file, use `M-x`, type in `replace-regexp`, type in `^` and finally type in `file /home/callumdyer/Cantonese/`, except with whatever the path is to the directory where you have your .mp3 files (rather than mine). Your file should look something like this:
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/24_input_for_ffmpeg.png)
 
-You will need to delete the space from the jaau1 and long3 and long .mp3 file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3). Do this as well within the `input_for_FFmpeg.txt` file, otherwise FFmpeg will return an error when it gets to these two files.
+You will need to delete the space from the jaau1 and long3 .mp3 file names, so that there's no space between the character and the Jyutping (142.左jaau1.mp3 vs 142.左 jaau1.mp3). Do this as well within the `input_for_FFmpeg.txt` file, otherwise FFmpeg will return an error when it gets to these two files.
 
 Using Ubuntu or WSL Ubuntu, after navigating to the directory with the .txt file and the .mp3 files, use the following command: `sudo ffmpeg -f concat -safe 0 -i input_for_FFmpeg.txt tone_drills.mp3`
 
