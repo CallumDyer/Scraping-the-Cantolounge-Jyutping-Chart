@@ -119,7 +119,7 @@ The script removes blank elements from our `chinese` array and then writes out t
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/19_chinese_raw_text.png)
 
-Next, we construct a list of urls using these characters. Copy the characters to a new script named `script_2_crawling_cantolounge.rb`. 
+Next, we construct an array using these characters. Copy the characters to a new script named `script_2_crawling_cantolounge.rb`. 
 
 Note that for Emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x, immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift)).
 
