@@ -101,7 +101,7 @@ Paste the output into a text editor of your choice and save the file as `chinese
 
 What we want is an array of Chinese characters, like the following:`"烏鴉"`. No doubt there are many ways to convert the data we have now in chinese_from_JSONPath.txt to such an array. The following is what I did, and requires Emacs (I will provide some links and instructions for those unfamiliar with it).
 
-Create a new file titled `script_1_formatting_chinese_raw_input.rb` (or alternatively use the script of the same name that is provided). Copy the contents of `chinese_from_JSONPath.txt` into it and assign the resulting array to the variable `chinese`. Note that for those following along with emacs, copying the characters in will result in emacs complaining about problematic characters. Simply press enter to `Select coding system (default utf-8)`. Emacs won't be able to fully render all the characters, but that does not matter for our purposes.
+Create a new file titled `script_1_formatting_chinese_raw_input.rb` (or alternatively use the script of the same name that is provided). Copy the contents of `chinese_from_JSONPath.txt` into it and assign the resulting array to the variable `chinese`. Note that for those following along with Emacs, copying the characters in will result in Emacs complaining about problematic characters. Simply press enter to `Select coding system (default utf-8)`. Emacs won't be able to fully render all the characters, but that does not matter for our purposes.
 
 ![](https://github.com/CallumDyer/Scraping-the-Cantolounge-Jyutping-Chart/blob/main/Screenshots/18_chinese_variable.png)
 
@@ -121,7 +121,7 @@ The script removes blank elements from our `chinese` array and then writes out t
 
 Next, we construct a list of urls using these characters. Copy the characters to a new script named `script_2_crawling_cantolounge.rb`. 
 
-Note that for emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x, immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift)).
+Note that for Emacs commands: `C-x h` or `C-x TAB` means hold down the ctrl key and while holding down the key, press x, immediately afterwards press the h or TAB keys respectively. `M-x` means hold down the alt key and while holding down the key, press x. If at any point you make a mistake, undo with `C-_` (to be clear, you will need to hold down ctrl and, since the _ character is reached with shift, also hold down shift and then press the _ key (which is also the key for - except without the shift)).
 
 Ensure the cursor is at the very start of the file by using the command `M-<` (to be clear, you will again need to hold down alt, hold down shift and press the < key (which is also the key for , except without the shift)).
 
